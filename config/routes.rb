@@ -19,9 +19,14 @@ Rails.application.routes.draw do
   get     'mypage/order_history', to: 'users#order_history'
 
   resources :shops, only: %i[show]
-  get     'shops/login',   to: 'sessions#new'
   post    'shops/login',   to: 'sessions#create'
   delete  'shops/logout',  to: 'sessions#destroy'
+  get     'shop_login',   to: 'sessions#new', as: 'shop_login'
+
+  resources :shops do
+    get '/order',   to: 'shops#order_index'
+    #get '/login',   to: 'sessions#new'
+  end
 
   get '/carts', to: 'carts#show'
   post '/add_item', to: 'carts#add_item'

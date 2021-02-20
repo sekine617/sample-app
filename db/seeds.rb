@@ -261,7 +261,7 @@ end
   ) 
 end
 
-(1..20).each do
+(1..30).each do
 Review.create!([
   {user_id: Random.rand(1..20) , product_id: Random.rand(1..40)  , comment: 'とても美味しかったです。', rate: 5 },
   {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: '美味しかったです', rate: 4 },

@@ -1,5 +1,7 @@
 class ShopsController < ApplicationController
-  # skip_before_action :require_sign_in!, only: [:new, :create, :show]
+  #skip_before_action :require_sign_in!, only: [:new, :create, :show]
+  before_action :require_sign_in!, only: [:order_index]
+
   def show
     @shop_img = Photo.find_by(id: 4)
     @shop = Shop.find_by(id: params[:id])
@@ -27,6 +29,9 @@ class ShopsController < ApplicationController
   end
 
   def me; end
+
+  def order_index
+  end
 
   private
 
