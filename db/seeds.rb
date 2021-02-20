@@ -5,6 +5,17 @@
   #     Shop.create!(name: "ケーキ屋#{i}", email: "cake#{i}@cake.jp", auth_id: "#{i}" ,password: "password#{i}", phone_number: "0120#{i}00000", opening_hours: "10:00~19:00", address: "東京",)
   #     end
 
+  (1..20).each do
+    email = Faker::Internet.email
+    gimei = Gimei.new
+    last_name = gimei.last.kanji 
+    first_name = gimei.first.kanji
+    last_hurigana = gimei.last.katakana 
+    first_hurigana = gimei.first.katakana
+    user = User.new(last_name: last_name, first_name: first_name ,last_hurigana: last_hurigana, first_hurigana: first_hurigana, email: email, password: 'password',)
+    user.save!
+  end
+
 Shop.create!(
     [
         {name: 'ラミティエル', email: 'lamitiel@gmail.com', auth_id: '12345678', password: 'kjbl35h32',
@@ -249,4 +260,17 @@ end
     ]
   ) 
 end
+
+(1..20).each do
+Review.create!([
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40)  , comment: 'とても美味しかったです。', rate: 5 },
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: '美味しかったです', rate: 4 },
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: 'クリームが軽くて食べやすかったです。', rate: 4 },
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: '甘さがちょうどよく、食べやすかったです。', rate: 5 },
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: 'そこそこ美味しかったです。', rate: 4 },
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: '少し甘すぎました。', rate: 3 },
+  {user_id: Random.rand(1..20) , product_id: Random.rand(1..40) , comment: '味がパッとしませんでした。', rate: 3 },
+])
+end
+
 #end
