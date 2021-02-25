@@ -10,13 +10,13 @@ module ApplicationHelper
 
   def time_format(int_time)
     case int_time
-    when 1
+    when 0
       '10:00~12:00'
-    when 2
+    when 1
       '13:00~15:00'
-    when 3
+    when 2
       '15:00~17:00'
-    when 4
+    when 3
       '17:00~19:00'
     end
   end

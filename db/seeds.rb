@@ -273,4 +273,20 @@ Review.create!([
 ])
 end
 
+@today = Date.current
+(1..20).each do 
+(0..180).each do |i|
+     product_id = Random.rand(1..40)
+     product = Product.find_by(id: product_id)
+     shop = Shop.find_by(id: product.shop_id)
+     rand_num = Random.rand(1..2)
+     Order.create!([
+        {user_id: Random.rand(1..20) , postcode: '12345' , prefecture_code: '22', address_city: '葛飾区', address_street: '新宿9丁目47', address_building: '20番10号', receipt_date: "#{@today + i.day}", receipt_time: Random.rand(1..4), total_price: rand_num * product.price }
+      ])
+     OrderProduct.create!([
+           {order_id: Order.last.id, product_id: product_id, shop_id: shop.id, quantity: rand_num , price: product.price}
+      ])
+end
+end
+
 #end

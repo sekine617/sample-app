@@ -1,13 +1,12 @@
 class ShopsController < ApplicationController
   #skip_before_action :require_sign_in!, only: [:new, :create, :show]
-  before_action :require_sign_in!, only: [:order_index]
+  #before_action :require_sign_in!, only: [:order_index]
 
   def show
     @shop_img = Photo.find_by(id: 4)
     @shop = Shop.find_by(id: params[:id])
     @products = Product.where(shop_id: params[:id])
     @products = @products.page(params[:page])
-    binding.pry
   end
 
   def new
@@ -31,6 +30,10 @@ class ShopsController < ApplicationController
   def me; end
 
   def order_index
+    today = Date.current
+    @shop_id = params[:id]
+   #Order.joins(:order_products).select("orders.*, order_products.*").where(receipt_date: '2021-02-25').where(order_products: { shop_id: 9 }).first.price
+    @orders_of_today = Order.joins(:order_products).select("orders.*, order_products.*").where(receipt_date: '2021-02-25' , order_products: { shop_id: 9 })
   end
 
   private

@@ -1,29 +1,30 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">予約時間</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<div class="contents mt-4">
+  <div class="card mb-3 ">
+    <div class="card-header">Header</div>
+      <div class="card-body">
+        <table class="table">
+            予約時間
+          <tbody>
+            <% (0..3).each do |i| %>
+              <tr>
+                <th scope="row"><%= time_format(i) %></th>
+                <% if @orders_of_today.present? %>
+                  <% @shop_orders = @orders_of_today.find_by(receipt_time: i) %>
+                     <td>
+                        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+                          <div class="card-header">Header</div>
+                          <div class="card-body">
+                            <% @shop_orders.each do |shop_order| %>
+                              <h5 class="card-title"><%= shop_order.product.name %></h5>
+                            <% end %>
+                          </div>
+                        </div>
+                     </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order
   before_action :set_address
-  before_action :authenticate_user!
+  
 
   def new
     @order = Order.new

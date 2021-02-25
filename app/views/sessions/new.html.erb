@@ -3,7 +3,7 @@
         <h2 class="head-text">ショップでログイン</h2>
     </div>
     <div class="container">
-        <%= form_with scope: :session, url: shops_login_path do |f| %>
+        <%= form_with url: shops_login_path, local: true do |f| %>
         <%= render 'shared/error_messages' %>
         <div class="field mb-3 mt-3">
             <%= f.label :auth_id, 'ID' %><br>
